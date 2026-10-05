@@ -15,14 +15,17 @@ authRouter.use(express.json())
 authRouter.post('/login' , loginUser);
 
 // profile route
-authRouter.get("/profile" , authMiddleware , async (req , res) => {
+authRouter.get('/profile', authMiddleware , async (req , res) => {
+    console.log("kkkkkklll");
+    
     try {
-        const user =await RegisterApi.findById(req.user.userId) 
+          
+        const user = await RegisterApi.findOne({id : req.user.userId}) 
         .select("-password")
         
         res.status(200).json(user)
     } catch (error) {
-        res.status(500).send({message : error.message})
-    }
+        next(error);
+      }
 
 })

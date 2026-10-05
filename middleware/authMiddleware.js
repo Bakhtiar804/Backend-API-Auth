@@ -1,8 +1,13 @@
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+
+dotenv.config();
 
 export const authMiddleware = async (req , res , next) => {
     try {
         const authHeader = req.headers.authorization;
+        console.log(authHeader);
+        
 
         if(!authHeader){
             return res.status(401).send({status : 401 , message : "Unauthorized"})
@@ -11,18 +16,26 @@ export const authMiddleware = async (req , res , next) => {
         const token = authHeader.split(" ")[1];
         console.log(token);
 
+         console.log("TOKEN:", token);
+        console.log("SECRET:", process.env.JWT_SECRET);
+
         const decodedToken = jwt.verify(
-            token.
+            token,
             process.env.JWT_SECRET
-        )
+        );
+
+        console.log( "decoded token" + decodedToken);
+        
+
         req.user = decodedToken
 
         next()
 
         
     } catch (error) {
-        res.send({status : 500 , message : error.message})
-   
+
+   error.statuscode = 401;
+   next(error)
         
     }
 } 

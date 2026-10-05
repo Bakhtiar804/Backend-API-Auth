@@ -19,7 +19,8 @@ const registerSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+          match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
 
     password: {

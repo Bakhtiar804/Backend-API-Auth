@@ -4,6 +4,7 @@ import routerUser from "./routes/userRoutes.js"
 import dotenv from "dotenv"
 import dns from "node:dns";
 import { authRouter } from "./routes/authRoutes.js";
+import { errorMiddleware } from "./middleware/errorMiddleware.js";
 
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
@@ -24,10 +25,10 @@ app.use('/' , routerUser)
 //  register user 
 
 app.use(express.json());
-app.use('/' , authRouter);
+app.use('/users' , authRouter);
 
 
-
+app.use(errorMiddleware);
 
 
 
