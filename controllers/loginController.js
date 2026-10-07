@@ -28,11 +28,11 @@ export const loginUser = async (req , res) => {
 
         res.status(200).json({status : 200 , message : "User login successfully" , token})
 
-        console.log(res.token);
+       
         
 
     } catch (error) {
-        res.status(500).send({message : error.message})
+        next(error)
     }
 };
 

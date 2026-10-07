@@ -1,10 +1,11 @@
 import express from "express";
 import connectDb from "./config/db.js";
-import routerUser from "./routes/userRoutes.js"
+
 import dotenv from "dotenv"
 import dns from "node:dns";
 import { authRouter } from "./routes/authRoutes.js";
 import { errorMiddleware } from "./middleware/errorMiddleware.js";
+import productRouter from "./routes/productsRoutes.js";
 
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
@@ -20,12 +21,12 @@ connectDb()
 // add data practice
 
 app.use(express.json());
-app.use('/' , routerUser)
+app.use('/api' , productRouter)
 
 //  register user 
 
 app.use(express.json());
-app.use('/users' , authRouter);
+app.use('/api/user' , authRouter);
 
 
 app.use(errorMiddleware);

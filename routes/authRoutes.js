@@ -16,7 +16,7 @@ authRouter.post('/login' , loginUser);
 
 // profile route
 authRouter.get('/profile', authMiddleware , async (req , res) => {
-    console.log("kkkkkklll");
+    
     
     try {
           

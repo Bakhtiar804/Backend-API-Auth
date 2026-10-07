@@ -1,7 +1,7 @@
 import express from "express"
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     id: {
         type: Number,
         unique : true
@@ -26,6 +26,6 @@ const userSchema = new mongoose.Schema({
         versionKey: false
     })
 
-const User = mongoose.model('User', userSchema);
+const Product = mongoose.model('Products', productSchema);
 
-export default User;
+export default Product;
