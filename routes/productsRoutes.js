@@ -1,13 +1,14 @@
 import express from "express"
 import Product from "../models/products.js"
 import { addData } from "../controllers/productsController.js";
+import upload from "../middleware/uploadMiddleware.js";
 
 
 const productRouter = express.Router();
 
 
 productRouter.use(express.json())
-productRouter.post('/product', addData)
+productRouter.post('/product', upload.single("image") , addData)
 
 productRouter.get('/product', async (req, res) => {
 

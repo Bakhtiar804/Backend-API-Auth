@@ -1,31 +1,38 @@
-import express from "express"
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
     id: {
         type: Number,
-        unique : true
+        unique: true
     },
-
-    name: {
-       type :  String,
-       required : true
+    title: {
+        type: String,
+        required: true
     },
-
-    email: {
-        type : String,
-        required : true,
+    price: {
+        type: Number,
+        required: true
     },
-    
-    password: {
-        type : Number,
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
         required : true
-    } 
-},
-    {
-        versionKey: false
-    })
+    },
+    stock: {
+        type: Number,
+        default: 0
+    }
+},{
+    versionKey : false
+});
 
-const Product = mongoose.model('Products', productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 export default Product;
