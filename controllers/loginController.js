@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 
 
 
-export const loginUser = async (req , res) => {
+export const loginUser = async (req , res , next) => {
     try {
         const {email , password} = req.body;
         const user = await RegisterApi.findOne({email});

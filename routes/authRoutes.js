@@ -15,7 +15,7 @@ authRouter.use(express.json())
 authRouter.post('/login' , loginUser);
 
 // profile route
-authRouter.get('/profile', authMiddleware , async (req , res) => {
+authRouter.get('/profile', authMiddleware , async (req , res , next) => {
     
     
     try {

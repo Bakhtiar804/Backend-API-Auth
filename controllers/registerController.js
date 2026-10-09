@@ -1,13 +1,14 @@
 import RegisterApi from "../models/register.js";
 import bcrypt from "bcrypt"
 
-export const registerUser = async (req, res) => {
+export const registerUser = async (req, res , next) => {
     console.log(req.body);
 
     try {
         const { firstName, lastName, email, password } = req.body
         const lastId = await RegisterApi.findOne().sort({ id: -1 });
         const newId = lastId ? lastId.id + 1 : 1;
+    
         const hashPassword = await bcrypt.hash(password, 10);
 
 
